@@ -27,6 +27,11 @@ const server = http.createServer((req, res) => {
             'Content-type': 'application/json'
         });
         getServerPlayers(res);
+    } else if (pathname === '/bans') {
+        res.writeHead(200, {
+            'Content-type': 'application/json'
+        });
+        getServerBans(res);
     } else {
         res.writeHead(404, {
             'Content-type': 'text/html',
@@ -39,6 +44,25 @@ server.listen(LISTENPORT, '0.0.0.0', () => {
     console.log('Listening to requests on port ' + LISTENPORT);
   });
 
+
+function callbackServerBans(factorioAge, res) {
+    res.end(JSON.stringify({"bans" : factorioAge})); //todo, prettify json
+}
+
+function getServerBans(res) {
+    var conn = new Rcon(RCONSERVER, RCONPORT, RCONPASSWORD);
+
+    conn.on('auth', function() {
+
+    conn.send("/bans");
+
+    }).on('response', function(str) {
+        callbackServerBans(str, res);
+        conn.disconnect();
+    });
+
+    conn.connect();
+}
 
 function callbackServerAge(factorioAge, res) {
     res.end(JSON.stringify({"age" : factorioAge}));
