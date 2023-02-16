@@ -16,17 +16,17 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, {
             'Content-type': 'application/json'
         });
-        getServerVersion(callbackServerVersion, res);
+        getServerVersion(res);
     } else if (pathname === '/age') {
         res.writeHead(200, {
             'Content-type': 'application/json'
         });
-        getServerAge(callbackServerAge, res);
+        getServerAge(res);
     } else if (pathname === '/players') {
         res.writeHead(200, {
             'Content-type': 'application/json'
         });
-        getServerPlayers(callbackServerPlayers, res);
+        getServerPlayers(res);
     } else {
         res.writeHead(404, {
             'Content-type': 'text/html',
@@ -44,7 +44,7 @@ function callbackServerAge(factorioAge, res) {
     res.end(JSON.stringify({"age" : factorioAge}));
 }
 
-function getServerAge(callback, res) {
+function getServerAge(res) {
     var conn = new Rcon(RCONSERVER, RCONPORT, RCONPASSWORD);
 
     conn.on('auth', function() {
@@ -64,7 +64,7 @@ function callbackServerVersion(factorioVersion, res) {
     res.end(JSON.stringify({"version" : factorioVersion}));
 }
 
-function getServerVersion(callback, res) {
+function getServerVersion(res) {
     var conn = new Rcon(RCONSERVER, RCONPORT, RCONPASSWORD);
 
     conn.on('auth', function() {
@@ -83,7 +83,7 @@ function callbackServerPlayers(playersList, res) {
     res.end(JSON.stringify(playersList)); // TODO: parse into a nice json setup
 }
 
-function getServerPlayers(callback, res) {
+function getServerPlayers(res) {
     var conn = new Rcon(RCONSERVER, RCONPORT, RCONPASSWORD);
 
     conn.on('auth', function() {
