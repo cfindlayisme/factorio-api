@@ -47,11 +47,11 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(LISTENPORT, '0.0.0.0', () => {
-    console.log('Listening to requests on port ' + LISTENPORT);
+    logInfo('Listening to requests on port ' + LISTENPORT);
   });
 
 function logInfo(str) {
-    console.log(str); // To put somewhere better later
+    console.log("INFO: "+ str); // To put somewhere better later
 }
 
 function callbackServerBans(factorioAge, res) {
