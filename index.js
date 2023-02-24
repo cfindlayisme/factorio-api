@@ -1,3 +1,9 @@
+//
+//
+//
+// Author: Chuck Findlay <chuck@findlayis.me>
+// License: LGPL v3.0
+
 var Rcon = require('rcon');
 const http = require('http');
 const url = require('url');
