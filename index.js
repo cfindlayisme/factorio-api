@@ -17,6 +17,8 @@ const RCONPASSWORD = process.env.RCONPASSWORD;
 // Toss up our little API server
 const server = http.createServer((req, res) => {
     const { query, pathname } = url.parse(req.url, true);
+
+    logInfo("Request received: " + req.url + " from " + req.connection.remoteAddress);
   
     if (pathname === '/version') {
         res.writeHead(200, {
