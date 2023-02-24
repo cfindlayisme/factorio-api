@@ -50,6 +50,9 @@ server.listen(LISTENPORT, '0.0.0.0', () => {
     console.log('Listening to requests on port ' + LISTENPORT);
   });
 
+function logInfo(str) {
+    console.log(str); // To put somewhere better later
+}
 
 function callbackServerBans(factorioAge, res) {
     res.end(JSON.stringify({"bans" : factorioAge})); //todo, prettify json
